@@ -26,9 +26,10 @@ something smells wrong.
 
 ## Stack
 
-- **Server:** Node.js + Fastify (`server/`) — JSON file datastore, no database
-- **Client:** React + Vite (`client/`)
-- **Data:** `data/listings.json`
+- **Server:** Node.js + Fastify + TypeScript (`server/src/`, run with `tsx`) — JSON file datastore, no database
+- **Client:** React + Vite + TypeScript + Tailwind (`client/`), styled by the token-based
+  design system in `client/src/design-system/` (Day/Night themes)
+- **Data:** `data/listings.json`, `data/categories.json`
 
 ## Quickstart
 
@@ -49,8 +50,9 @@ npm install     # once, from the repo root (npm workspaces)
 npm run dev     # server on :3001, client on :5173
 ```
 
-Open http://localhost:5173 — you should see the listing count and the raw
-payload. Check the server terminal: every API request is logged.
+Open http://localhost:5173 — you should see the listings grid with a category
+filter; open a card for its detail page, or post one at `/sell`. Check the
+server terminal: every API request is logged.
 
 Production check:
 
@@ -80,6 +82,9 @@ that follow.
 
 | Endpoint | Returns |
 |----------|---------|
-| `GET /api/health` | `{ status: "ok" }` |
-| `GET /api/listings` | all listings |
+| `GET /api/health` | `{ status: "ok", service: "swapmeet-api" }` |
+| `GET /api/categories` | the category list (`{ id, label }[]`) |
+| `GET /api/listings` | all listings, newest first |
+| `GET /api/listings?category=<id>` | listings in one category (`[]` if unknown) |
 | `GET /api/listings/:id` | one listing, or 404 |
+| `POST /api/listings` | creates a listing → 201; 400 with per-field `details` if invalid |
