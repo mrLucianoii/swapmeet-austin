@@ -1,0 +1,7 @@
+[
+  { "id": "restaurant-equipment", "label": "Restaurant Equipment" },
+  { "id": "maker-tools", "label": "Maker Tools" },
+  { "id": "retail", "label": "Retail" },
+  { "id": "landscaping", "label": "Landscaping" },
+  { "id": "events", "label": "Events" }
+]
